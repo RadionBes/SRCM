@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "app.collage.base-url",
+      "type": "java.lang.String",
+      "description": "Description for app.collage.base-url."
+    },
+    {
+      "name": "app.collage.endpoints.groups",
+      "type": "java.lang.String",
+      "description": "Description for app.collage.endpoints.groups."
+    },
+    {
+      "name": "app.collage.endpoints.weeks",
+      "type": "java.lang.String",
+      "description": "Description for app.collage.endpoints.weeks."
+    },
+    {
+      "name": "app.collage.endpoints.teachers",
+      "type": "java.lang.String",
+      "description": "Description for app.collage.endpoints.teachers."
+    }
+  ]
+}

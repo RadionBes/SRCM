@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: The system records the completed material
+  datasource:
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5432/SRCM
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+
+
+
+app:
+  collage:
+    base-url: https://www.lrmk.ru
+    endpoints:
+      groups: /api/open/groups
+      weeks: /api/open/weeks
+      teachers: /api/open/teachers
