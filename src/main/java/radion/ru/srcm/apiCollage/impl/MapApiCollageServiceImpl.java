@@ -21,14 +21,13 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     private final ObjectMapper objectMapper;
 
     @Override
-    public void getListGroup() {
+    public List<GroupApiDto> getListGroup() {
         var request = new Request.Builder()
                 .url(appVar.getBaseUrl() + appVar.getEndpoints().getGroups())
                 .get()
                 .build();
         try (var response = client.newCall(request).execute()) {
-            List<GroupApiDto> body = objectMapper.readValue(response.body().string(), new TypeReference<>(){});
-            System.out.println(body);
+            return objectMapper.readValue(response.body().string(), new TypeReference<>(){});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
