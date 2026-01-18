@@ -1,0 +1,36 @@
+package radion.ru.srcm.web.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import radion.ru.srcm.dto.GroupResponse;
+import radion.ru.srcm.dto.StudentsCreateRequest;
+import radion.ru.srcm.entity.Student;
+import radion.ru.srcm.mapper.GroupMapper;
+import radion.ru.srcm.service.GroupService;
+import radion.ru.srcm.service.StudentService;
+
+import java.util.List;
+
+
+@RestController
+@RequestMapping("/api/v1/students")
+@RequiredArgsConstructor
+public class StudentsController {
+    private final GroupService groupService;
+    private final StudentService studentService;
+    private final GroupMapper groupMapper;
+
+    @PostMapping
+    private GroupResponse createStudents(@RequestBody StudentsCreateRequest request){
+        studentService.createStudentsFromList(request);
+        return groupMapper.toDtoResponse(
+                groupService.getGroupInfo(request.getGroupId())
+        );
+    }
+
+    @GetMapping
+    private List<Student> getAllStudent(){
+        return studentService.getAll();
+    }
+
+}
