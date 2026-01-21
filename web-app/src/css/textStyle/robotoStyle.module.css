@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap');
+
+:root{
+    --text_width_nav: 100;
+    --text_weight_nav: 400;
+    --text_size: 24px;
+}
+
+.roboto_nav {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: var(--text_weight_nav);
+    font-variation-settings: var(--text_width_nav);
+
+    font-size: var(--text_size);
+}

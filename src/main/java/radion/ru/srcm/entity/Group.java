@@ -33,4 +33,7 @@ public class Group {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     private List<Student> studentList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
+    private List<Timetable> timetables = new ArrayList<>();
 }

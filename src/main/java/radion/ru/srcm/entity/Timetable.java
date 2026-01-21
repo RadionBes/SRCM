@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import radion.ru.srcm.util.TimeVar;
 
 @Table
 @Entity
@@ -19,4 +20,10 @@ public class Timetable {
 
     @Column(nullable = false)
     private String groupName;
+    @Column(nullable = false)
+    private String time;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "group_id")
+    private Group group;
 }
