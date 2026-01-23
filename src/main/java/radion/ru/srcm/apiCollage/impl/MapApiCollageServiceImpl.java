@@ -8,7 +8,7 @@ import okhttp3.Request;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.config.AppVar;
-import radion.ru.srcm.dto.GroupApiDto;
+import radion.ru.srcm.dto.api.GroupApiDto;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,18 +1,20 @@
 package radion.ru.srcm.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
-import radion.ru.srcm.dto.GroupApiDto;
+import org.mapstruct.ReportingPolicy;
 import radion.ru.srcm.dto.GroupResponse;
-import radion.ru.srcm.dto.ResponseGroupForList;
+import radion.ru.srcm.dto.api.GroupApiDto;
 import radion.ru.srcm.entity.Group;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface GroupMapper {
+    @Mapping(target = "id", ignore = true)
     Group toEntity(GroupApiDto groupApiDto);
-    ResponseGroupForList toDto(Group group);
-    List<ResponseGroupForList> toDto(List<Group> groups);
-    GroupResponse toDtoResponse(Group group);
+    GroupResponse toDto(Group group);
+    List<GroupResponse> toDto(List<Group> groups);
+    radion.ru.srcm.dto.response.GroupResponse toDtoResponse(Group group);
 }

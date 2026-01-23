@@ -2,8 +2,9 @@ package radion.ru.srcm.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import radion.ru.srcm.dto.GroupResponse;
-import radion.ru.srcm.dto.StudentsCreateRequest;
+import radion.ru.srcm.dto.response.GroupResponse;
+import radion.ru.srcm.dto.request.StudentsCreateRequest;
+import radion.ru.srcm.dto.response.StudentsResponse;
 import radion.ru.srcm.entity.Student;
 import radion.ru.srcm.mapper.GroupMapper;
 import radion.ru.srcm.service.GroupService;
@@ -24,13 +25,12 @@ public class StudentsController {
     private GroupResponse createStudents(@RequestBody StudentsCreateRequest request){
         studentService.createStudentsFromList(request);
         return groupMapper.toDtoResponse(
-                groupService.getGroupInfo(request.getGroupId())
+                groupService.getGroupById(request.getGroupId())
         );
     }
 
     @GetMapping
-    private List<Student> getAllStudent(){
+    private StudentsResponse getAllStudent(){
         return studentService.getAll();
     }
-
 }

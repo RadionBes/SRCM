@@ -1,10 +1,7 @@
 package radion.ru.srcm.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +29,11 @@ public class Group {
     @Column(nullable = false)
     private String hoz;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
-    private List<Student> studentList = new ArrayList<>();
+    private String curator;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
-    private List<Timetable> timetables = new ArrayList<>();
+    private final List<Student> studentList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
+    private final List<Timetable> timetables = new ArrayList<>();
 }

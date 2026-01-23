@@ -3,7 +3,7 @@ package radion.ru.srcm.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
-import radion.ru.srcm.dto.ResponseGroupForList;
+import radion.ru.srcm.dto.GroupResponse;
 import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.mapper.GroupMapper;
 import radion.ru.srcm.repository.GroupJpaRepository;
@@ -31,15 +31,11 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<ResponseGroupForList> getGroupList() {
+    public List<GroupResponse> getGroupList() {
+        syncGroup();
         return mapper.toDto(
                 repository.findAll()
         );
-    }
-
-    @Override
-    public Group getGroupInfo(Long id) {
-        return repository.findById(id).orElse(null);
     }
 
     @Override

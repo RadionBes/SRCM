@@ -2,8 +2,7 @@ package radion.ru.srcm.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import radion.ru.srcm.dto.GroupResponse;
-import radion.ru.srcm.entity.Group;
+import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.mapper.GroupMapper;
 import radion.ru.srcm.service.GroupService;
 
@@ -15,9 +14,9 @@ public class GroupController {
     private final GroupMapper mapper;
 
     @GetMapping
-    public GroupResponse getGroupInfoById(@RequestParam("id") Long id) {
+    public GroupResponse getGroupById(@RequestParam("id") Long id) {
         return mapper.toDtoResponse(
-                groupService.getGroupInfo(id)
+                groupService.getGroupById(id)
         );
     }
 }

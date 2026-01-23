@@ -1,4 +1,4 @@
-package radion.ru.srcm.dto;
+package radion.ru.srcm.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,10 +6,12 @@ import radion.ru.srcm.util.Interest;
 
 @Data
 @Builder
-public class StudentDto {
+public class StudentResponse {
     private Long id;
 
     private String fullName;
     private String city;
     private Interest interest;
+
+    private GroupResponseNotStudents group;
 }

@@ -1,14 +1,17 @@
 package radion.ru.srcm.service;
 
-import radion.ru.srcm.dto.StudentDto;
-import radion.ru.srcm.dto.StudentsCreateRequest;
-import radion.ru.srcm.entity.Student;
-
-import java.util.List;
+import radion.ru.srcm.dto.request.StudentCreateRequest;
+import radion.ru.srcm.dto.request.StudentUpdateRequest;
+import radion.ru.srcm.dto.request.StudentsCreateRequest;
+import radion.ru.srcm.dto.response.StudentResponse;
+import radion.ru.srcm.dto.response.StudentsResponse;
 
 public interface StudentService {
-     Student create(StudentDto studentDto, Long groupId);
+     StudentResponse create(StudentCreateRequest studentsCreateRequest, Long groupId);
      void createStudentsFromList(StudentsCreateRequest students);
+     StudentsResponse getAll();
 
-     List<Student> getAll();
+     StudentResponse update(StudentUpdateRequest studentUpdateRequest);
+
+
 }

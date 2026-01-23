@@ -1,8 +1,8 @@
-package radion.ru.srcm.dto;
+package radion.ru.srcm.dto.request;
 
 import lombok.Builder;
 import lombok.Data;
-import radion.ru.srcm.util.Interest;
+import radion.ru.srcm.dto.StudentDto;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
 @Builder
 public class StudentsCreateRequest {
     private Long groupId;
-    private List<StudentDto> students;
+    private List<StudentCreateRequest> students;
 }
