@@ -1,0 +1,25 @@
+:root{
+    --color-back-card: #18181B;
+    --text-weight-card: 400;
+    --text-width-card: 100;
+    --font-size-card: 18px;
+}
+
+.style_text{
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: var(--text-weight-card);
+    font-style: normal;
+    font-variation-settings: var(--text-width-card);
+
+    font-size: var(--font-size-card);
+}
+
+.group_card_main{
+    width: 250px;
+    height: 80px;
+    background: var(--color-back-card);
+
+    padding: 5px 10px;
+    border-radius: 15px;
+}
