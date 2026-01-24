@@ -7,11 +7,9 @@ import radion.ru.srcm.dto.response.StudentResponse;
 import radion.ru.srcm.dto.response.StudentsResponse;
 
 public interface StudentService {
-     StudentResponse create(StudentCreateRequest studentsCreateRequest, Long groupId);
-     void createStudentsFromList(StudentsCreateRequest students);
-     StudentsResponse getAll();
-
-     StudentResponse update(StudentUpdateRequest studentUpdateRequest);
-
-
+    StudentResponse create(StudentCreateRequest studentsCreateRequest, Long groupId);
+    void createStudentsFromList(StudentsCreateRequest students);
+    StudentsResponse getAll();
+    StudentResponse update(StudentUpdateRequest studentUpdateRequest);
+    StudentResponse getById(Long id);
 }

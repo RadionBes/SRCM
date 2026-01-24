@@ -7,11 +7,14 @@ import radion.ru.srcm.dto.request.StudentUpdateRequest;
 import radion.ru.srcm.dto.request.StudentsCreateRequest;
 import radion.ru.srcm.dto.response.StudentResponse;
 import radion.ru.srcm.dto.response.StudentsResponse;
+import radion.ru.srcm.entity.Student;
 import radion.ru.srcm.mapper.entity.StudentMapperEntity;
 import radion.ru.srcm.mapper.response.StudentMapperResponse;
 import radion.ru.srcm.repository.StudentJpaRepository;
 import radion.ru.srcm.service.GroupService;
 import radion.ru.srcm.service.StudentService;
+
+import java.util.Optional;
 
 
 @Service
@@ -61,10 +64,28 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentResponse update(StudentUpdateRequest studentUpdateRequest) {
-        return studentMapperResponse.toResponse(
-                repository.save(
-                        studentMapperEntity.toEntity(studentUpdateRequest)
+        Student student = repository.findById(studentUpdateRequest.getId()).orElseThrow();
+
+        Optional.ofNullable(studentUpdateRequest.getCity()).ifPresent(student::setCity);
+        Optional.ofNullable(studentUpdateRequest.getFullName()).ifPresent(student::setFullName);
+        Optional.ofNullable(studentUpdateRequest.getDescription()).ifPresent(student::setDescription);
+        Optional.ofNullable(studentUpdateRequest.getInterest()).ifPresent(student::setInterest);
+        Optional.ofNullable(studentUpdateRequest.getGroupId()).ifPresent(el ->
+                student.setGroup(
+                        groupService.getGroupById(el)
                 )
+        );
+
+        return studentMapperResponse.toResponse(
+                repository.save(student)
+        );
+    }
+
+    @Override
+    public StudentResponse getById(Long id) {
+        return studentMapperResponse.toResponse(
+                repository.findById(id)
+                        .orElseThrow()
         );
     }
 }

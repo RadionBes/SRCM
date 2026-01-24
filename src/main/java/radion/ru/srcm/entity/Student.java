@@ -25,6 +25,9 @@ public class Student {
     @Column(nullable = false)
     private Interest interest;
 
+    @Column(length = 1500)
+    private String description;
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;

@@ -31,6 +31,9 @@ public class Group {
 
     private String curator;
 
+    @Column(length = 1500)
+    private String description;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     private final List<Student> studentList = new ArrayList<>();
 

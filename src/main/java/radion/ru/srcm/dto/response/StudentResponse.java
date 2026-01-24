@@ -12,6 +12,7 @@ public class StudentResponse {
     private String fullName;
     private String city;
     private Interest interest;
+    private String description;
 
     private GroupResponseNotStudents group;
 }
