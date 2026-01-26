@@ -1,9 +1,10 @@
 package radion.ru.srcm.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
-import radion.ru.srcm.dto.GroupResponse;
+import radion.ru.srcm.dto.GroupListResponse;
 import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.mapper.GroupMapper;
 import radion.ru.srcm.repository.GroupJpaRepository;
@@ -30,8 +31,10 @@ public class GroupServiceImpl implements GroupService {
                 );
     }
 
+
+
     @Override
-    public List<GroupResponse> getGroupList() {
+    public List<GroupListResponse> getGroupList() {
         syncGroup();
         return mapper.toDto(
                 repository.findAll()
@@ -39,8 +42,29 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public List<Group> getAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Group getGroupById(Long groupId) {
         return repository.findById(groupId).orElse(null);
+    }
+
+    @Override
+    public Group getGroupByKey(String key) {
+        return repository.findGroupByKey(key);
+    }
+
+    @Override
+    @Transactional
+    public void save(Group group) {
+        repository.save(group);
+    }
+
+    @Override
+    public void saveAll(List<Group> groups) {
+        repository.saveAll(groups);
     }
 
 

@@ -19,6 +19,11 @@
       "name": "app.collage.endpoints.teachers",
       "type": "java.lang.String",
       "description": "Description for app.collage.endpoints.teachers."
+    },
+    {
+      "name": "app.collage.endpoints.subjects",
+      "type": "java.lang.String",
+      "description": "Description for app.collage.endpoints.subjects."
     }
   ]
 }

@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "group_college")
 @Entity
@@ -34,9 +36,16 @@ public class Group {
     @Column(length = 1500)
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
-    private final List<Student> studentList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
-    private final List<Timetable> timetables = new ArrayList<>();
+    @Builder.Default
+    private List<Subject> subjects = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
+    @Builder.Default
+    private List<Student> studentList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
+    @Builder.Default
+    private List<Timetable> timetables = new ArrayList<>();
 }

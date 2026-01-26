@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.config.AppVar;
 import radion.ru.srcm.dto.api.GroupApiDto;
+import radion.ru.srcm.dto.api.SubjectApiDto;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,4 +33,19 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<SubjectApiDto> getListSubjectForGroup(String key) {
+        var request = new Request.Builder()
+                .url(appVar.getBaseUrl() + appVar.getEndpoints().getSubjects() + "?group=" + Long.parseLong(key))
+                .get()
+                .build();
+        try (var response = client.newCall(request).execute()) {
+            return objectMapper.readValue(response.body().string(), new TypeReference<>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

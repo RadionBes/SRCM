@@ -20,5 +20,6 @@ public class AppVar {
         private String groups;
         private String weeks;
         private String teachers;
+        private String subjects;
     }
 }

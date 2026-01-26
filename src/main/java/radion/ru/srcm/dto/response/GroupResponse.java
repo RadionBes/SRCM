@@ -18,6 +18,8 @@ public class GroupResponse {
     private String hoz;
 
     private String curator;
+    private String description;
 
+    private List<SubjectResponse> subjects;
     private List<StudentDto> studentList;
 }

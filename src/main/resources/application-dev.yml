@@ -8,7 +8,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 
 
 
@@ -20,3 +20,4 @@ app:
       groups: /api/open/groups
       weeks: /api/open/weeks
       teachers: /api/open/teachers
+      subjects: /api/open/subjects

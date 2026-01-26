@@ -7,6 +7,7 @@ import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.dto.request.StudentsCreateRequest;
 import radion.ru.srcm.dto.response.StudentsResponse;
 import radion.ru.srcm.mapper.GroupMapper;
+import radion.ru.srcm.mapper.response.GroupMapperResponse;
 import radion.ru.srcm.service.GroupService;
 import radion.ru.srcm.service.StudentService;
 
@@ -16,13 +17,13 @@ import radion.ru.srcm.service.StudentService;
 public class StudentsController {
     private final GroupService groupService;
     private final StudentService studentService;
-    private final GroupMapper groupMapper;
+    private final GroupMapperResponse groupMapperResponse;
 
     @PostMapping
     private ResponseEntity<GroupResponse> createStudents(@RequestBody StudentsCreateRequest request) {
         studentService.createStudentsFromList(request);
         return ResponseEntity.ok(
-                groupMapper.toDtoResponse(
+                groupMapperResponse.toResponse(
                         groupService.getGroupById(request.getGroupId())
                 )
         );
