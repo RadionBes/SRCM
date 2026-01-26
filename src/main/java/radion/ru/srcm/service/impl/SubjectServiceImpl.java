@@ -1,8 +1,10 @@
 package radion.ru.srcm.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
+import radion.ru.srcm.dto.api.SubjectApiDto;
 import radion.ru.srcm.dto.response.SubjectResponse;
 import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.entity.Subject;
@@ -32,6 +34,8 @@ public class SubjectServiceImpl implements SubjectService {
         );
     }
 
+
+    //TODO: Переделать!
     @Override
     public void syncAllGroup() {
         List<Group> groupsEntityList = groupService.getAll();
