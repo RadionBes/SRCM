@@ -1,14 +1,14 @@
 package radion.ru.srcm.service;
 
 
-import radion.ru.srcm.dto.GroupListResponse;
+import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.entity.Group;
 
 import java.util.List;
 
 public interface GroupService {
     void syncGroup();
-    List<GroupListResponse> getGroupList();
+    List<GroupResponse> getGroupList();
     List<Group> getAll();
     Group getGroupById(Long groupId);
     Group getGroupByKey(String key);

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import radion.ru.srcm.dto.GroupListResponse;
+import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.service.GroupService;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class GroupsController {
     private final GroupService groupService;
 
     @GetMapping
-    public List<GroupListResponse> getAllGroups(){
+    public List<GroupResponse> getAllGroups(){
         return groupService.getGroupList();
     }
 }
