@@ -1,8 +1,8 @@
 {
   "list": [
-    {"label": "Главная"},
-    {"label": "Группы"},
-    {"label": "Студенты"},
-    {"label": "Материалы"}
+    {"label": "Главная", "state": "Main"},
+    {"label": "Группы", "state": "Groups"},
+    {"label": "Студенты", "state": "Students"},
+    {"label": "Материалы", "state": "Materials"}
   ]
 }

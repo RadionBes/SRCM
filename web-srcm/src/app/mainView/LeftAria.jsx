@@ -1,21 +1,32 @@
 import nav from '/src/staticData/navigate.json'
 import style from '/src/css/mainView/LeftAria.module.css'
 
-export function LeftAria({ onGroupsClick }) {
+export function LeftAria(props) {
     const nav_list = nav.list.map((value, index) => {
             if (value.label === 'Группы') {
                 return (
                     <li className={style.nav_element}
                         key={index}
-                        onClick={onGroupsClick}
-                    >{value.label}</li>
+                    >
+                        <button onClick={() => {
+                            props.onGroupsClick();
+                            props.onSetValueState(value.state)
+                        }
+                        }>{value.label}</button>
+                    </li>
                 )
             } else {
-                return(
-                    <li className={style.nav_element} key={index}>{value.label}</li>
+                return (
+                    <li className={style.nav_element} key={index}>
+                        <button onClick={
+                            () => {
+                                props.onGroupsClick();
+                                props.onSetValueState(value.state)
+                            }
+                        }>{value.label}</button>
+                    </li>
                 )
             }
-
         }
     );
     return (
