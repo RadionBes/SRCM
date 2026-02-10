@@ -7,7 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
-import radion.ru.srcm.config.AppVar;
+import radion.ru.srcm.config.ApiAppVar;
 import radion.ru.srcm.dto.api.GroupApiDto;
 import radion.ru.srcm.dto.api.SubjectApiDto;
 
@@ -17,14 +17,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MapApiCollageServiceImpl implements MapApiCollageService {
-    private final AppVar appVar;
+    private final ApiAppVar apiAppVar;
     private final OkHttpClient client;
     private final ObjectMapper objectMapper;
 
     @Override
     public List<GroupApiDto> getListGroup() {
         var request = new Request.Builder()
-                .url(appVar.getBaseUrl() + appVar.getEndpoints().getGroups())
+                .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getGroups())
                 .get()
                 .build();
         try (var response = client.newCall(request).execute()) {
@@ -37,7 +37,7 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     @Override
     public List<SubjectApiDto> getListSubjectForGroup(String key) {
         var request = new Request.Builder()
-                .url(appVar.getBaseUrl() + appVar.getEndpoints().getSubjects() + "?group=" + Long.parseLong(key))
+                .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getSubjects() + "?group=" + Long.parseLong(key))
                 .get()
                 .build();
         try (var response = client.newCall(request).execute()) {

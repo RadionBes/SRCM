@@ -10,11 +10,10 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dto.api.GroupApiDto;
-import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.mapper.entity.GroupMapperEntity;
 import radion.ru.srcm.mapper.response.GroupMapperResponse;
-import radion.ru.srcm.repository.GroupJpaRepository;
+import radion.ru.srcm.dao.GroupJpaRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +22,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

@@ -21,3 +21,6 @@ app:
       weeks: /api/open/weeks
       teachers: /api/open/teachers
       subjects: /api/open/subjects
+  file-path:
+    groups: /home/radion/Рабочий стол/Test/Groups
+    students: /home/radion/Рабочий стол/Test/Students

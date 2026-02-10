@@ -24,6 +24,11 @@
       "name": "app.collage.endpoints.subjects",
       "type": "java.lang.String",
       "description": "Description for app.collage.endpoints.subjects."
+    },
+    {
+      "name": "app.file-path",
+      "type": "java.lang.String",
+      "description": "Description for app.file-path."
     }
   ]
 }

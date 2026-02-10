@@ -1,0 +1,27 @@
+package radion.ru.srcm.web.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import radion.ru.srcm.service.FileService;
+
+import java.io.IOException;
+
+@RestController
+@RequestMapping("/api/v1/file")
+@RequiredArgsConstructor
+public class FileController {
+    private final FileService fileService;
+
+    @PostMapping
+    public void saveFileGroup(
+            @RequestParam("groupId") Long groupId,
+            @RequestParam("studentId") Long studentId,
+            MultipartFile multipartFile
+    ) throws IOException {
+        fileService.uploadFile(multipartFile, groupId, studentId);
+    }
+}

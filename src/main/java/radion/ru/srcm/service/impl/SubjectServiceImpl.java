@@ -8,7 +8,7 @@ import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.entity.Subject;
 import radion.ru.srcm.mapper.entity.SubjectMapperEntity;
 import radion.ru.srcm.mapper.response.SubjectMapperResponse;
-import radion.ru.srcm.repository.SubjectJpaRepository;
+import radion.ru.srcm.dao.SubjectJpaRepository;
 import radion.ru.srcm.service.GroupService;
 import radion.ru.srcm.service.SubjectService;
 

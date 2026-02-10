@@ -8,7 +8,7 @@ import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.mapper.entity.GroupMapperEntity;
 import radion.ru.srcm.mapper.response.GroupMapperResponse;
-import radion.ru.srcm.repository.GroupJpaRepository;
+import radion.ru.srcm.dao.GroupJpaRepository;
 import radion.ru.srcm.service.GroupService;
 
 import java.util.List;

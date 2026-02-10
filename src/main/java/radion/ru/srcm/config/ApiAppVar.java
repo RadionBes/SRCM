@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app.collage")
 @Getter
 @Setter
-public class AppVar {
+public class ApiAppVar {
     private String baseUrl;
     private Endpoints endpoints = new Endpoints();
 

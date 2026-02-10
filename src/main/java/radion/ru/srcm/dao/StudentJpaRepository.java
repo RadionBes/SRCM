@@ -1,4 +1,4 @@
-package radion.ru.srcm.repository;
+package radion.ru.srcm.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import radion.ru.srcm.entity.Group;
