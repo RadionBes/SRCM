@@ -1,31 +1,32 @@
-import {LeftAria} from "./mainView/LeftAria.jsx";
-import {MainListGroup} from "./mainView/MainListGroup.jsx";
-import style from '/src/css/App.module.css'
 import {useFetchGroups} from "../api/UseFetchGroups.js";
 import {useState} from "react";
+import {useFetchStudents} from "../api/UseFetchStudent.js";
+import {Navigation} from "./navigation/Navigation.jsx";
+import '/src/styles/default/_index_default.scss'
 
 export function App() {
-    const {groups, loading, error, fetchGroups} = useFetchGroups();
+    const {groups, loadingGroup, errorGroup, fetchGroups} = useFetchGroups();
+    const {students, loadingStudent, errorStudent, fetchStudents} = useFetchStudents();
 
     const [button, setButtonState] = useState("Undefine")
 
+    const handleGroupsClick = () => {
+        if (button !== "Groups") {
+            fetchGroups().then(() => null);
+        }
+        setButtonState("Groups");
+    };
+
+    const handleStudentsClick = () => {
+        if (button !== "Students") {
+            fetchStudents().then(() => null);
+        }
+        setButtonState("Students");
+    };
+
     return (
-        <div className={style.app_container}>
-            <LeftAria
-                onGroupsClick={fetchGroups}
-                groups={groups} loading={loading} error={error}
-                valueClick={button} onSetValueState={setButtonState}
-            />
-
-            {
-                button === "Groups" && (
-                <>
-                    <MainListGroup groups={groups} loading={loading} error={error}/>
-                </>
-                )
-            }
-
-
-        </div>
+        <>
+            <Navigation/>
+        </>
     )
 }

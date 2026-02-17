@@ -1,0 +1,95 @@
+// Primary colors of the app
+$color-1: #8ECAE6;
+$color-2: #219EBC;
+$color-3: #023047;
+$color-4: #FFB703;
+$color-5: #FB8500;
+$color-6: #000814;
+
+// Gradient "Color 7"
+$color-7-gr-1: #004DA3;
+$color-7-gr-2: #001D3D;
+
+$color-8: #003566;
+$color-9: #FFC300;
+$color-10: #FFD60A;
+// Text color
+$text-year-color: #8D949B;
+$text-white-color: #EFEFEF;
+$text-gray-color: #AAAAAA;
+// Общие дефолтные цвета
+$white-color: #EFEFEF;
+$color-10: #000000;
+$color-10: #000000;
+
+
+// Typography
+$font-family-all: 'Roboto', sans-serif;
+
+// Font sizes
+$font-size-xxs: 10px;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-tg: 20px;
+$font-size-xl: 24px;
+$font-size-xxl: 32px;
+
+// Font weight
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+
+// Padding
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// Границы
+$border-radius-sm: 4px;
+$border-radius-base: 8px;
+$border-radius-lg: 15px;
+$border-radius-circle: 50%;
+
+
+
+// Card Mixins
+@mixin text-card-title {
+  font-family: $font-family-all;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semi-bold;
+  line-height: 1.2;
+  color: $text-white-color;
+}
+@mixin text-card-body {
+  font-family: $font-family-all;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: 1.2;
+  color: $text-white-color;
+}
+@mixin text-card-description {
+  font-family: $font-family-all;
+  font-size: $font-size-xxs;
+  font-weight: $font-weight-regular;
+  line-height: 1.2;
+  color: $text-gray-color;
+}
+@mixin text-card-year {
+  font-family: $font-family-all;
+  font-size: $font-size-xxs;
+  font-weight: $font-weight-medium;
+  line-height: 1.2;
+  color: $text-white-color;
+}

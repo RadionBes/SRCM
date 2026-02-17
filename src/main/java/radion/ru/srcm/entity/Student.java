@@ -1,11 +1,11 @@
 package radion.ru.srcm.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import radion.ru.srcm.util.Interest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Table
 @Entity
@@ -13,6 +13,7 @@ import radion.ru.srcm.util.Interest;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +32,8 @@ public class Student {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "student")
+    @Builder.Default
+    private List<File> files = new ArrayList<>();
 }

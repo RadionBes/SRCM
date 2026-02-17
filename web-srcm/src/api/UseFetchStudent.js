@@ -1,13 +1,13 @@
-import {useState, useCallback} from 'react';
+import {useCallback, useState} from "react";
 
-export function useFetchGroups() {
-    const [groups, setGroups] = useState([]);
+export function useFetchStudents() {
+    const [students, setStudents] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const url = 'http://localhost:8080/api/v1/groups'
+    const url = 'http://localhost:8080/api/v1/students'
 
-    const fetchGroups = useCallback(async () => {
+    const fetchStudents = useCallback(async () => {
         try {
             setLoading(true);
             const response = await fetch(url);
@@ -17,7 +17,7 @@ export function useFetchGroups() {
             }
 
             const data = await response.json();
-            setGroups(data);
+            setStudents(data);
             setError(null);
         } catch (err) {
             setError(err.message);
@@ -27,5 +27,5 @@ export function useFetchGroups() {
         }
     }, []);
 
-    return {groups, loading, error, fetchGroups};
+    return {students, loading, error, fetchStudents};
 }

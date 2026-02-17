@@ -5,10 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.dto.request.StudentsCreateRequest;
-import radion.ru.srcm.dto.response.StudentsResponse;
+import radion.ru.srcm.dto.response.StudentResponse;
 import radion.ru.srcm.mapper.response.GroupMapperResponse;
 import radion.ru.srcm.service.GroupService;
 import radion.ru.srcm.service.StudentService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/students")
@@ -29,7 +31,7 @@ public class StudentsController {
     }
 
     @GetMapping
-    private StudentsResponse getAllStudent() {
+    private List<StudentResponse> getAllStudent() {
         return studentService.getAll();
     }
 }

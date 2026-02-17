@@ -16,12 +16,19 @@ import java.io.IOException;
 public class FileController {
     private final FileService fileService;
 
-    @PostMapping
+    @PostMapping("/group")
     public void saveFileGroup(
             @RequestParam("groupId") Long groupId,
+            MultipartFile multipartFile
+    ){
+        fileService.uploadFileGroup(multipartFile, groupId);
+    }
+
+    @PostMapping("/student")
+    public void saveFileStudent(
             @RequestParam("studentId") Long studentId,
             MultipartFile multipartFile
-    ) throws IOException {
-        fileService.uploadFile(multipartFile, groupId, studentId);
+    ){
+        fileService.uploadFileStudent(multipartFile, studentId);
     }
 }

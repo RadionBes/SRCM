@@ -1,8 +1,11 @@
 {
+  "logoAppName": "SRCM",
+  "logotype": "/imgs/logo2015.png",
   "list": [
-    {"label": "Главная", "state": "Main"},
-    {"label": "Группы", "state": "Groups"},
-    {"label": "Студенты", "state": "Students"},
-    {"label": "Материалы", "state": "Materials"}
+    {"id": 1, "label": "Главная", "state": "Main"},
+    {"id": 2, "label": "Группы", "state": "Groups"},
+    {"id": 3, "label": "Студенты", "state": "Students"},
+    {"id": 4, "label": "Материалы", "state": "Materials"}
   ]
 }
+

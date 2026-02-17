@@ -1,0 +1,20 @@
+@use "index" as *;
+
+.navItem{
+  height: 100%;
+  width: fit-content;
+
+  padding: 0 10px;
+  align-content: center;
+
+  &:hover{
+    @include background-hover-item;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+}
+
+.text{
+  @include text-nav-item;
+  text-align: center;
+}

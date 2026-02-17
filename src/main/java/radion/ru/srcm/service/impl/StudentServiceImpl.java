@@ -6,7 +6,6 @@ import radion.ru.srcm.dto.request.StudentCreateRequest;
 import radion.ru.srcm.dto.request.StudentUpdateRequest;
 import radion.ru.srcm.dto.request.StudentsCreateRequest;
 import radion.ru.srcm.dto.response.StudentResponse;
-import radion.ru.srcm.dto.response.StudentsResponse;
 import radion.ru.srcm.entity.Student;
 import radion.ru.srcm.mapper.entity.StudentMapperEntity;
 import radion.ru.srcm.mapper.response.StudentMapperResponse;
@@ -14,6 +13,7 @@ import radion.ru.srcm.dao.StudentJpaRepository;
 import radion.ru.srcm.service.GroupService;
 import radion.ru.srcm.service.StudentService;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -52,14 +52,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentsResponse getAll() {
-        return StudentsResponse.builder()
-                .students(
-                        studentMapperResponse.toResponse(
-                                repository.findAll()
-                        )
-                )
-                .build();
+    public List<StudentResponse> getAll() {
+        return studentMapperResponse.toResponse(
+                repository.findAll()
+        );
     }
 
     @Override
