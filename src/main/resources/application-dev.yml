@@ -10,8 +10,9 @@ spring:
     hibernate:
       ddl-auto: create-drop
 
-
-
+server:
+  servlet:
+    context-path: /api/v1
 
 app:
   collage:
@@ -24,3 +25,4 @@ app:
   file-path:
     groups: C:\Users\Radion\Documents\Test\Groups
     students: C:\Users\Radion\Documents\Test\Students
+

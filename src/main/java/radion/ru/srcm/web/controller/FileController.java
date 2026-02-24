@@ -11,7 +11,7 @@ import radion.ru.srcm.service.FileService;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/v1/file")
+@RequestMapping("/file")
 @RequiredArgsConstructor
 public class FileController {
     private final FileService fileService;

@@ -1,5 +1,6 @@
 package radion.ru.srcm.web.controller;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,7 @@ import radion.ru.srcm.service.SubjectService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/subject")
+@RequestMapping("/subject")
 @RequiredArgsConstructor
 public class SubjectController {
     private final SubjectService subjectService;
@@ -22,7 +23,7 @@ public class SubjectController {
     }
 
     @GetMapping
-    public List<SubjectResponse> getSubjectById(@RequestParam("id") Long id){
+    public List<SubjectResponse> getSubjectById(@RequestParam("id") @NotNull Long id){
         return subjectService.getAllSubjectById(id);
     }
 }

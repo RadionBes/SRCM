@@ -6,6 +6,7 @@ import radion.ru.srcm.util.Interest;
 
 @Data
 @Builder
+@Deprecated
 public class StudentDto {
     private Long id;
 
