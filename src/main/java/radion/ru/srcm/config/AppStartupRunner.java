@@ -6,9 +6,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import radion.ru.srcm.service.GroupService;
-import radion.ru.srcm.service.TeacherService;
-import radion.ru.srcm.service.WeekService;
+import radion.ru.srcm.service.*;
 
 @Component
 @RequiredArgsConstructor
@@ -17,12 +15,15 @@ public class AppStartupRunner {
     private final WeekService weekService;
     private final GroupService groupService;
     private final TeacherService teacherService;
+    private final RoomService roomService;
+    private final PairService pairService;
 
     @EventListener(ApplicationReadyEvent.class)
-    @Async
     public void runAfterStartup(){
         log.info("Запуск синхронизации после старта приложения");
         try {
+            pairService.sync();
+            roomService.sync();
             weekService.sync();
             groupService.sync();
             teacherService.sync();

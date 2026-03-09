@@ -20,6 +20,6 @@ public class Pair {
     private String position;
     @Column(nullable = false)
     private String begin;
-    @Column(nullable = false)
+    @Column(name = "\"end\"", nullable = false)
     private String end;
 }

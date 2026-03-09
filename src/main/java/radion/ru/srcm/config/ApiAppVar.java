@@ -17,6 +17,8 @@ public class ApiAppVar {
     @Setter
     @Getter
     public static class Endpoints{
+        private String pairs;
+        private String rooms;
         private String groups;
         private String weeks;
         private String teachers;

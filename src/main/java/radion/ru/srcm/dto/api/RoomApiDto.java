@@ -10,5 +10,5 @@ import lombok.Data;
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class RoomApiDto {
     private String key;
-    private String utf;
+    private String UTF;
 }

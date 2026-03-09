@@ -61,12 +61,28 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
 
     @Override
     public List<PairApiDto> getListPairs() {
-        return List.of();
+        var request = new Request.Builder()
+                .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getPairs())
+                .get()
+                .build();
+        try (var response = client.newCall(request).execute()) {
+            return objectMapper.readValue(response.body().string(), new TypeReference<>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<RoomApiDto> getListRooms() {
-        return List.of();
+        var request = new Request.Builder()
+                .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getRooms())
+                .get()
+                .build();
+        try (var response = client.newCall(request).execute()) {
+            return objectMapper.readValue(response.body().string(), new TypeReference<>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -34,6 +34,16 @@
       "name": "app.collage.endpoints.timetable",
       "type": "java.lang.String",
       "description": "Description for app.collage.endpoints.timetable."
+    },
+    {
+      "name": "app.collage.endpoints.rooms",
+      "type": "java.lang.String",
+      "description": "Description for app.collage.endpoints.rooms."
+    },
+    {
+      "name": "app.collage.endpoints.pairs",
+      "type": "java.lang.String",
+      "description": "Description for app.collage.endpoints.pairs."
     }
   ]
 }

@@ -18,6 +18,8 @@ app:
   collage:
     base-url: https://www.lrmk.ru
     endpoints:
+      pairs: /api/open/pairs
+      rooms: /api/open/rooms
       groups: /api/open/groups
       weeks: /api/open/weeks
       teachers: /api/open/teachers
