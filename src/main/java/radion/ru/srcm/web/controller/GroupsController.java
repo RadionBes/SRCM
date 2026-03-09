@@ -16,17 +16,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GroupsController {
     private final GroupService groupService;
-    private final GroupMapperResponse mapperResponse;
 
     @GetMapping
     public List<GroupResponse> getAllGroups(){
         return groupService.getGroupList();
-    }
-
-    @GetMapping
-    public GroupResponse getGroupById(@RequestParam("id") Long id) {
-        return mapperResponse.toResponse(
-                groupService.getGroupById(id)
-        );
     }
 }

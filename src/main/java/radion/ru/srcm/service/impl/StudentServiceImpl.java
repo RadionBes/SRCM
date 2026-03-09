@@ -7,6 +7,8 @@ import radion.ru.srcm.dto.request.StudentUpdateRequest;
 import radion.ru.srcm.dto.request.StudentsCreateRequest;
 import radion.ru.srcm.dto.response.StudentResponse;
 import radion.ru.srcm.entity.Student;
+import radion.ru.srcm.exceptions.ItemExistsException;
+import radion.ru.srcm.exceptions.NotFoundByIdException;
 import radion.ru.srcm.mapper.entity.StudentMapperEntity;
 import radion.ru.srcm.mapper.response.StudentMapperResponse;
 import radion.ru.srcm.dao.StudentJpaRepository;
@@ -36,8 +38,7 @@ public class StudentServiceImpl implements StudentService {
                     repository.save(entity)
             );
         } else {
-            //TODO: Дописать предупреждение
-            return null;
+            throw new ItemExistsException("This student is already exist in this group!");
         }
     }
 
@@ -81,7 +82,7 @@ public class StudentServiceImpl implements StudentService {
     public StudentResponse getById(Long id) {
         return studentMapperResponse.toResponse(
                 repository.findById(id)
-                        .orElseThrow()
+                        .orElseThrow(() -> new NotFoundByIdException("Student not found by id = "+id))
         );
     }
 }

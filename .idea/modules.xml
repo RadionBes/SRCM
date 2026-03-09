@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SRCM.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SRCM.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SRCM.test.iml" filepath="$PROJECT_DIR$/.idea/modules/SRCM.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lrmk.radion.ru.SRCM.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lrmk.radion.ru.SRCM.main.iml" />
     </modules>
   </component>

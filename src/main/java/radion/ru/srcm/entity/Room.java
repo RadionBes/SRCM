@@ -12,14 +12,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Timetable {
+public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @Column(unique = true, nullable = false)
+    private Integer key;
+    @Column(nullable = false)
+    private String utf;
 }

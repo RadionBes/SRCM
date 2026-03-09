@@ -2,9 +2,12 @@ package radion.ru.srcm.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.OrderedHashSet;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "group_college")
 @Entity
@@ -37,17 +40,17 @@ public class Group {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     @Builder.Default
-    private List<Subject> subjects = new ArrayList<>();
+    private Set<Subject> subjects = new OrderedHashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     @Builder.Default
-    private List<File> files = new ArrayList<>();
+    private Set<File> files = new OrderedHashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     @Builder.Default
-    private List<Student> studentList = new ArrayList<>();
+    private Set<Student> studentList = new OrderedHashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     @Builder.Default
-    private List<Timetable> timetables = new ArrayList<>();
+    private Set<TimetableTeacher> timetables = new OrderedHashSet<>();
 }

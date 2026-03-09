@@ -22,6 +22,7 @@ app:
       weeks: /api/open/weeks
       teachers: /api/open/teachers
       subjects: /api/open/subjects
+      timetable: /api/open/timetable
   file-path:
     groups: C:\Users\Radion\Documents\Test\Groups
     students: C:\Users\Radion\Documents\Test\Students

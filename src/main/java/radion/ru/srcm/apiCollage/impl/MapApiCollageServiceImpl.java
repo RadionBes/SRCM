@@ -8,8 +8,7 @@ import okhttp3.Request;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.config.ApiAppVar;
-import radion.ru.srcm.dto.api.GroupApiDto;
-import radion.ru.srcm.dto.api.SubjectApiDto;
+import radion.ru.srcm.dto.api.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,5 +46,44 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
         }
     }
 
+    @Override
+    public List<String> getListWeeks() {
+        var request = new Request.Builder()
+                .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getWeeks())
+                .get()
+                .build();
+        try (var response = client.newCall(request).execute()) {
+            return objectMapper.readValue(response.body().string(), new TypeReference<>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @Override
+    public List<PairApiDto> getListPairs() {
+        return List.of();
+    }
+
+    @Override
+    public List<RoomApiDto> getListRooms() {
+        return List.of();
+    }
+
+    @Override
+    public List<TeacherApiDto> getListTeachers() {
+        var request = new Request.Builder()
+                .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getTeachers())
+                .get()
+                .build();
+        try (var response = client.newCall(request).execute()) {
+            return objectMapper.readValue(response.body().string(), new TypeReference<>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<TimetableTeacherApiDto> getListTimetableTeacher() {
+        return List.of();
+    }
 }

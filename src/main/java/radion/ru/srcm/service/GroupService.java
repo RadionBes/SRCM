@@ -7,7 +7,7 @@ import radion.ru.srcm.entity.Group;
 import java.util.List;
 
 public interface GroupService {
-    void syncGroup();
+    void sync();
     List<GroupResponse> getGroupList();
     List<Group> getAll();
     Group getGroupById(Long groupId);

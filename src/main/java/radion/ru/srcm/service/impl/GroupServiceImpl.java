@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.entity.Group;
+import radion.ru.srcm.exceptions.NotFoundByIdException;
+import radion.ru.srcm.exceptions.NotFoundByKeyException;
 import radion.ru.srcm.mapper.entity.GroupMapperEntity;
 import radion.ru.srcm.mapper.response.GroupMapperResponse;
 import radion.ru.srcm.dao.GroupJpaRepository;
@@ -21,9 +23,8 @@ public class GroupServiceImpl implements GroupService {
     private final GroupMapperEntity mapper;
     private final GroupMapperResponse groupMapperResponse;
 
-
     @Override
-    public void syncGroup() {
+    public void sync() {
         var groups = apiCollageService.getListGroup();
         groups.stream()
                 .filter(el -> !repository.existsGroupByKey(el.getKey()))
@@ -35,7 +36,6 @@ public class GroupServiceImpl implements GroupService {
     }
     @Override
     public List<GroupResponse> getGroupList() {
-        syncGroup();
         return groupMapperResponse.toResponse(
                 repository.findAll()
         );
@@ -46,11 +46,11 @@ public class GroupServiceImpl implements GroupService {
     }
     @Override
     public Group getGroupById(Long groupId) {
-        return repository.findById(groupId).orElse(null);
+        return repository.findById(groupId).orElseThrow(() -> new NotFoundByIdException("GroupNotFoundById = "+groupId));
     }
     @Override
     public Group getGroupByKey(String key) {
-        return repository.findGroupByKey(key);
+        return repository.findGroupByKey(key).orElseThrow(() -> new NotFoundByKeyException("GroupNotFoundByKey = "+key));
     }
     @Override
     @Transactional

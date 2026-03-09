@@ -41,7 +41,7 @@ class GroupServiceImplTest {
 
 
     @Test
-    void syncGroup() {
+    void sync() {
         GroupApiDto existingGroup = GroupApiDto.builder()
                 .key("EXISTING_KEY")
                 .name("Existing Group")
@@ -84,7 +84,7 @@ class GroupServiceImplTest {
         when(groupMapper.toEntity(newGroup2)).thenReturn(newEntity2);
 
         // Act
-        groupService.syncGroup();
+        groupService.sync();
 
         // Assert
         // Проверяем, что получили группы из API

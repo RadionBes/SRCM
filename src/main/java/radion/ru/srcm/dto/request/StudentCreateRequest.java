@@ -18,4 +18,6 @@ public class StudentCreateRequest {
     private Interest interest;
     @Size(max = 1500)
     private String description;
+    @NotNull
+    private Long idGroup;
 }

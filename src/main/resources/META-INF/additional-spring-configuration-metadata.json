@@ -29,6 +29,11 @@
       "name": "app.file-path",
       "type": "java.lang.String",
       "description": "Description for app.file-path."
+    },
+    {
+      "name": "app.collage.endpoints.timetable",
+      "type": "java.lang.String",
+      "description": "Description for app.collage.endpoints.timetable."
     }
   ]
 }
