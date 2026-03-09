@@ -4,8 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dao.RoomJpaRepository;
+import radion.ru.srcm.entity.Room;
 import radion.ru.srcm.mapper.entity.RoomMapperEntity;
 import radion.ru.srcm.service.RoomService;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +24,10 @@ public class RoomServiceImpl implements RoomService {
                     mapApiCollageService.getListRooms()
                 )
         );
+    }
+
+    @Override
+    public List<Room> getAll() {
+        return roomJpaRepository.findAll();
     }
 }

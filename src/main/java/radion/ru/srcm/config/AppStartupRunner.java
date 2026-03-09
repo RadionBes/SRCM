@@ -6,6 +6,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import radion.ru.srcm.service.*;
 
 @Component
@@ -17,16 +18,18 @@ public class AppStartupRunner {
     private final TeacherService teacherService;
     private final RoomService roomService;
     private final PairService pairService;
+    private final SubjectService subjectService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void runAfterStartup(){
         log.info("Запуск синхронизации после старта приложения");
         try {
+            groupService.sync();
             pairService.sync();
             roomService.sync();
             weekService.sync();
-            groupService.sync();
             teacherService.sync();
+            subjectService.syncAllGroup();
             log.info("Синхронизация успешно завершена");
         } catch (Exception e) {
             log.error("Ошибка при синхронизации: {}", e.getMessage(), e);

@@ -17,11 +17,8 @@ import java.util.List;
 public class SubjectController {
     private final SubjectService subjectService;
 
-    @GetMapping("/sync")
-    public void syncSubjects(){
-        subjectService.syncAllGroup();
-    }
 
+    //TODO: Изменить на доп информацию об изучаемой дисциплине
     @GetMapping
     public List<SubjectResponse> getSubjectById(@RequestParam("id") @NotNull Long id){
         return subjectService.getAllSubjectById(id);

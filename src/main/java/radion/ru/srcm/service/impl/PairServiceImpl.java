@@ -4,8 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dao.PairJpaRepository;
+import radion.ru.srcm.entity.Pair;
 import radion.ru.srcm.mapper.entity.PairMapperEntity;
 import radion.ru.srcm.service.PairService;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +24,10 @@ public class PairServiceImpl implements PairService {
                         mapApiCollageService.getListPairs()
                 )
         );
+    }
+
+    @Override
+    public List<Pair> getAll() {
+        return pairJpaRepository.findAll();
     }
 }

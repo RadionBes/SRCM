@@ -30,4 +30,9 @@ public class WeekServiceImpl implements WeekService {
         weekJpaRepository.saveAll(weeks);
         log.info("Sync weeks. Saves at {} week element successful.", weeks.size());
     }
+
+    @Override
+    public List<Week> getAll() {
+        return weekJpaRepository.findAll();
+    }
 }
