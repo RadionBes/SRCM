@@ -8,7 +8,6 @@ import radion.ru.srcm.dto.request.StudentCreateRequest;
 import radion.ru.srcm.dto.StudentDto;
 import radion.ru.srcm.dto.request.StudentUpdateRequest;
 import radion.ru.srcm.dto.request.StudentsCreateRequest;
-import radion.ru.srcm.dto.response.StudentResponse;
 import radion.ru.srcm.entity.Student;
 
 import java.util.List;
@@ -20,6 +19,6 @@ public interface StudentMapperEntity {
     Student toEntity(StudentDto studentDto);
     Student toEntity(StudentsCreateRequest studentsCreateRequest);
     Student toEntity(StudentCreateRequest studentCreateRequest);
-    List<Student> toEntity(List<StudentCreateRequest> studentsDto);
+    List<Student> toEntity(List<StudentsCreateRequest.StudentRequestItem> studentsDto);
     Student toEntity(StudentUpdateRequest studentUpdateRequest);
 }

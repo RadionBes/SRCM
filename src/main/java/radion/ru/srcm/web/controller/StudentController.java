@@ -26,11 +26,10 @@ public class StudentController {
 
     @PostMapping("/create")
     public ResponseEntity<StudentResponse> createStudent(
-            @RequestParam("groupId") Long groupId,
             @RequestBody @Valid StudentCreateRequest studentCreateRequest
     ){
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                studentService.create(studentCreateRequest, groupId)
+                studentService.create(studentCreateRequest)
         );
     }
 

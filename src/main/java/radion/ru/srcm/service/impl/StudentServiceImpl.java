@@ -29,8 +29,8 @@ public class StudentServiceImpl implements StudentService {
     private final GroupService groupService;
 
     @Override
-    public StudentResponse create(StudentCreateRequest studentsCreateRequest, Long groupId) {
-        var group = groupService.getGroupById(groupId);
+    public StudentResponse create(StudentCreateRequest studentsCreateRequest) {
+        var group = groupService.getGroupById(studentsCreateRequest.getIdGroup());
         var entity = studentMapperEntity.toEntity(studentsCreateRequest);
         if (!repository.existsStudentByGroupAndFullName(group, studentsCreateRequest.getFullName())) {
             entity.setGroup(group);
@@ -43,13 +43,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void createStudentsFromList(StudentsCreateRequest students) {
+    public List<StudentResponse> createStudentsFromList(StudentsCreateRequest students) {
         var group = groupService.getGroupById(students.getGroupId());
         var entities = studentMapperEntity.toEntity(students.getStudents());
         entities.stream()
                 .filter(el -> !repository.existsStudentByGroupAndFullName(group, el.getFullName()))
                 .forEach(el -> el.setGroup(group));
-        repository.saveAll(entities);
+        return studentMapperResponse.toResponse(
+                repository.saveAll(entities)
+        );
     }
 
     @Override

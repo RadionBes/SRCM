@@ -14,7 +14,6 @@ public class GroupController {
     private final GroupService groupService;
     private final GroupMapperResponse mapperResponse;
 
-
     @GetMapping("/{id}")
     public GroupResponse getGroupById(@PathVariable Long id) {
         return mapperResponse.toResponse(
