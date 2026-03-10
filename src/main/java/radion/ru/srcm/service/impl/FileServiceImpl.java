@@ -53,11 +53,9 @@ public class FileServiceImpl implements FileService {
                             .student(null)
                             .build()
             ).getId();
-            log.info("Файл {} для группы {} успешно сохранен", id, groupId);
-        }catch (RuntimeException exception){
-            log.error("Не получилось сохранить файл для группы {}.\n {}", groupId, exception.getMessage());
+        } catch (Exception e) {
+            throw new FileWriteException(e.getMessage());
         }
-
 
 
     }
@@ -66,13 +64,13 @@ public class FileServiceImpl implements FileService {
     public void uploadFileStudent(MultipartFile multipartFile, Long studentId) {
         log.info("Начинаем загрузку файла для студента {}", studentId);
         Student student = studentServiceOriginal.getById(studentId);
+
         try {
             String uniqueFileName = getUniqueName(multipartFile);
             fileWriter(pathAppVar.getStudents(), student.getId().toString(), uniqueFileName, multipartFile);
-        } catch (RuntimeException exception){
-            log.error("Не удалось сохранить файл для студента {}.\n {}", studentId, exception.getMessage());
+        } catch (Exception e) {
+            throw new FileWriteException(e.getMessage());
         }
-
     }
     @Override
     public void copyFile(Long id) {}

@@ -10,6 +10,14 @@ import radion.ru.srcm.exceptions.impl.ResponseException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<ResponseException> runtime(RuntimeException runtimeException){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                new ResponseException(HttpStatus.INTERNAL_SERVER_ERROR.value(), runtimeException.getMessage())
+        );
+    }
+
     @ExceptionHandler(ItemExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ResponseException> itemExistsExceptionHandler(ItemExistsException itemExistsException){
@@ -19,18 +27,18 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(NotFoundByIdException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ResponseException> notFoundByIdExceptionHandler(NotFoundByIdException notFoundByIdException){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                new ResponseException(HttpStatus.BAD_REQUEST.value(), notFoundByIdException.getMessage())
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ResponseException(HttpStatus.NOT_FOUND.value(), notFoundByIdException.getMessage())
         );
     }
 
     @ExceptionHandler(NotFoundByKeyException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ResponseException> notFoundByKeyExceptionHandler(NotFoundByKeyException notFoundByKeyException){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                new ResponseException(HttpStatus.BAD_REQUEST.value(), notFoundByKeyException.getMessage())
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ResponseException(HttpStatus.NOT_FOUND.value(), notFoundByKeyException.getMessage())
         );
     }
 }

@@ -2,6 +2,7 @@ package radion.ru.srcm.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dto.response.GroupResponse;
@@ -22,6 +23,7 @@ public class GroupServiceImpl implements GroupService {
     private final MapApiCollageService apiCollageService;
     private final GroupMapperEntity mapper;
     private final GroupMapperResponse groupMapperResponse;
+    private final MessageSource messageSource;
 
     @Override
     public void sync() {
@@ -46,11 +48,26 @@ public class GroupServiceImpl implements GroupService {
     }
     @Override
     public Group getGroupById(Long groupId) {
-        return repository.findById(groupId).orElseThrow(() -> new NotFoundByIdException("GroupNotFoundById = "+groupId));
+        return repository.findById(groupId).orElseThrow(() ->
+                new NotFoundByIdException(
+                        messageSource.getMessage(
+                                "error.NotFoundGroupById",
+                                new Object[]{groupId},
+                                null
+                        )
+                )
+        );
     }
     @Override
     public Group getGroupByKey(String key) {
-        return repository.findGroupByKey(key).orElseThrow(() -> new NotFoundByKeyException("GroupNotFoundByKey = "+key));
+        return repository.findGroupByKey(key).orElseThrow(() ->
+                new NotFoundByKeyException(
+                        messageSource.getMessage(
+                                "error.NotFoundGroupById",
+                                new Object[]{key},
+                                null
+                        )
+                ));
     }
     @Override
     @Transactional

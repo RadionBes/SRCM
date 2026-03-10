@@ -2,6 +2,7 @@ package radion.ru.srcm.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
@@ -10,7 +11,9 @@ import radion.ru.srcm.entity.Week;
 import radion.ru.srcm.service.WeekService;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +31,6 @@ public class WeekServiceImpl implements WeekService {
                 ).build())
                 .toList();
         weekJpaRepository.saveAll(weeks);
-        log.info("Sync weeks. Saves at {} week element successful.", weeks.size());
     }
 
     @Override

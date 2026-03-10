@@ -32,7 +32,7 @@ public class AppStartupRunner {
             subjectService.syncAllGroup();
             log.info("Синхронизация успешно завершена");
         } catch (Exception e) {
-            log.error("Ошибка при синхронизации: {}", e.getMessage(), e);
+            log.error("Ошибка при синхронизации: {}", e.getMessage());
         }
     }
 }
