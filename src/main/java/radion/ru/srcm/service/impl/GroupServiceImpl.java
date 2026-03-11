@@ -51,7 +51,7 @@ public class GroupServiceImpl implements GroupService {
         return repository.findById(groupId).orElseThrow(() ->
                 new NotFoundByIdException(
                         messageSource.getMessage(
-                                "error.NotFoundGroupById",
+                                "warning.NotFoundGroupById",
                                 new Object[]{groupId},
                                 null
                         )
@@ -63,7 +63,7 @@ public class GroupServiceImpl implements GroupService {
         return repository.findGroupByKey(key).orElseThrow(() ->
                 new NotFoundByKeyException(
                         messageSource.getMessage(
-                                "error.NotFoundGroupById",
+                                "warning.NotFoundGroupByKey",
                                 new Object[]{key},
                                 null
                         )

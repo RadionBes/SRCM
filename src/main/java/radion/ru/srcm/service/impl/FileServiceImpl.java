@@ -3,6 +3,7 @@ package radion.ru.srcm.service.impl;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import radion.ru.srcm.config.PathAppVar;
@@ -30,6 +31,7 @@ public class FileServiceImpl implements FileService {
     private final FileJpaRepository fileJpaRepository;
     private final GroupService groupService;
     private final StudentServiceOriginal studentServiceOriginal;
+    private final MessageSource messageSource;
 
     @Override
     @Transactional
@@ -42,7 +44,7 @@ public class FileServiceImpl implements FileService {
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
             String uniqueFileName = UUID.randomUUID() + fileExtension;
             String savePath = fileWriter(pathAppVar.getGroups(), group.getId().toString(), uniqueFileName, multipartFile);
-            long id = fileJpaRepository.save(
+            fileJpaRepository.save(
                     File.builder()
                             .id(null)
                             .name(originalFilename)
@@ -52,7 +54,7 @@ public class FileServiceImpl implements FileService {
                             .group(group)
                             .student(null)
                             .build()
-            ).getId();
+            );
         } catch (Exception e) {
             throw new FileWriteException(e.getMessage());
         }
@@ -68,23 +70,30 @@ public class FileServiceImpl implements FileService {
         try {
             String uniqueFileName = getUniqueName(multipartFile);
             fileWriter(pathAppVar.getStudents(), student.getId().toString(), uniqueFileName, multipartFile);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             throw new FileWriteException(e.getMessage());
         }
+
     }
     @Override
     public void copyFile(Long id) {}
-    private String getUniqueName(MultipartFile multipartFile){
+    private String getUniqueName(MultipartFile multipartFile) throws RuntimeException {
         try {
             String originalFilename = multipartFile.getOriginalFilename();
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
             return UUID.randomUUID() + fileExtension;
         } catch (Exception e) {
             log.error("Не получилось обработать полное имя файла \n {}", e.getMessage());
-            throw new RuntimeException(e);
+            throw new RuntimeException(
+                    messageSource.getMessage(
+                            "error.FieldGetFullFileName",
+                            null,
+                            null
+                    )
+            );
         }
     }
-    private String fileWriter(String path, String nameOfDirectory, String uniqueFileName, MultipartFile multipartFile){
+    private String fileWriter(String path, String nameOfDirectory, String uniqueFileName, MultipartFile multipartFile) throws RuntimeException {
         try {
             Path groupDir = Paths.get(path, nameOfDirectory);
             Files.createDirectories(groupDir);
@@ -94,10 +103,16 @@ public class FileServiceImpl implements FileService {
             return filePath.toString();
         } catch (IOException exception){
             log.error("Ошибка записи файла \n {}", exception.getMessage());
-            throw new FileWriteException(exception.getMessage());
+            throw new RuntimeException(
+                    messageSource.getMessage(
+                            "error.FileWriteException",
+                            null,
+                            null
+                    )
+            );
         }
     }
-    private String getFileExtension(String filename) {
+    private String getFileExtension(String filename) throws FileGetExtensionException{
         try {
             if (filename == null || filename.lastIndexOf(".") == -1) {
                 return "";
@@ -105,7 +120,13 @@ public class FileServiceImpl implements FileService {
             return filename.substring(filename.lastIndexOf(".") + 1);
         } catch (RuntimeException e) {
             log.error("Не удалось получить расширение файла \n {}", e.getMessage());
-            throw new FileGetExtensionException(e.getMessage());
+            throw new FileGetExtensionException(
+                    messageSource.getMessage(
+                            "error.FileGetExtensionException",
+                            null,
+                            null
+                    )
+            );
         }
     }
 }

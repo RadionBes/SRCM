@@ -1,6 +1,7 @@
 package radion.ru.srcm.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import radion.ru.srcm.dto.request.StudentCreateRequest;
 import radion.ru.srcm.dto.request.StudentUpdateRequest;
@@ -25,11 +26,11 @@ public class StudentServiceImpl implements StudentService {
     private final StudentJpaRepository repository;
     private final StudentMapperEntity studentMapperEntity;
     private final StudentMapperResponse studentMapperResponse;
-
     private final GroupService groupService;
+    private final MessageSource messageSource;
 
     @Override
-    public StudentResponse create(StudentCreateRequest studentsCreateRequest) {
+    public StudentResponse create(StudentCreateRequest studentsCreateRequest) throws ItemExistsException{
         var group = groupService.getGroupById(studentsCreateRequest.getIdGroup());
         var entity = studentMapperEntity.toEntity(studentsCreateRequest);
         if (!repository.existsStudentByGroupAndFullName(group, studentsCreateRequest.getFullName())) {
@@ -38,7 +39,12 @@ public class StudentServiceImpl implements StudentService {
                     repository.save(entity)
             );
         } else {
-            throw new ItemExistsException("This student is already exist in this group!");
+            throw new ItemExistsException(
+                    messageSource.getMessage(
+                            "warning.StudentAlreadyExists",
+                            new Object[]{studentsCreateRequest.getFullName()},
+                            null)
+            );
         }
     }
 
@@ -81,10 +87,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponse getById(Long id) {
+    public StudentResponse getById(Long id) throws NotFoundByIdException {
         return studentMapperResponse.toResponse(
-                repository.findById(id)
-                        .orElseThrow(() -> new NotFoundByIdException("Student not found by id = "+id))
+                repository.findById(id).orElseThrow(() ->
+                        new NotFoundByIdException(
+                                messageSource.getMessage(
+                                        "warning.StudentNotFound",
+                                        new Object[]{id},
+                                        null
+                                )
+                        )
+                )
         );
     }
 }

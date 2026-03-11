@@ -21,16 +21,8 @@ import java.util.Set;
 public class SubjectServiceImpl implements SubjectService {
     private final SubjectJpaRepository subjectJpaRepository;
     private final SubjectMapperEntity subjectMapperEntity;
-    private final SubjectMapperResponse subjectMapperResponse;
     private final MapApiCollageService mapApiCollageService;
     private final GroupService groupService;
-
-    @Override
-    public List<SubjectResponse> getAllSubjectById(Long id) {
-        return subjectMapperResponse.toResponse(
-                subjectJpaRepository.findAllById(id)
-        );
-    }
 
     @Override
     public void syncAllGroup() {
