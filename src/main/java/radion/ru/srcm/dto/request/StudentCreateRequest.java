@@ -10,14 +10,15 @@ import radion.ru.srcm.util.Interest;
 @Data
 @Builder
 public class StudentCreateRequest {
-    @NotBlank
+    @NotBlank(message = "{messages.not.blank}")
+    @Size(min = 10, message = "{messages.min.size}")
     private String fullName;
-    @NotBlank
+    @NotBlank(message = "{messages.not.blank}")
     private String city;
-    @NotNull
+    @NotNull(message = "{messages.not.null}")
     private Interest interest;
-    @Size(max = 1500)
+    @Size(max = 1500, message = "{messages.not.blank}")
     private String description;
-    @NotNull
+    @NotNull(message = "{messages.not.blank}")
     private Long idGroup;
 }

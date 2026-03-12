@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @Builder
 public class StudentsCreateRequest {
-    @NotNull
+    @NotNull(message = "{messages.not.null}")
     private Long groupId;
     @Valid
     private List<@Valid StudentRequestItem> students;
@@ -22,13 +22,13 @@ public class StudentsCreateRequest {
     @Data
     @Builder
     public static class StudentRequestItem{
-        @NotBlank
+        @NotBlank(message = "{messages.not.blank}")
         private String fullName;
-        @NotBlank
+        @NotBlank(message = "{messages.not.blank}")
         private String city;
-        @NotNull
+        @NotNull(message = "{messages.not.null}")
         private Interest interest;
-        @Size(max = 1500)
+        @Size(max = 1500, message = "{messages.max.size}")
         private String description;
     }
 }

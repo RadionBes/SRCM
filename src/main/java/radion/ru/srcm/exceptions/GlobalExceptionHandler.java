@@ -2,13 +2,33 @@ package radion.ru.srcm.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import radion.ru.srcm.exceptions.impl.ResponseException;
+import radion.ru.srcm.exceptions.impl.ResponseExceptionModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ResponseExceptionModel> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getFieldErrors().forEach(el ->
+                errors.put(el.getField(), el.getDefaultMessage())
+        );
+        return ResponseEntity.badRequest().body(
+                ResponseExceptionModel.builder()
+                        .code(HttpStatus.BAD_REQUEST.value())
+                        .errors(errors)
+                        .build()
+        );
+    }
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

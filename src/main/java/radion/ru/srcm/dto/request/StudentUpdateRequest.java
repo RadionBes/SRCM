@@ -9,15 +9,17 @@ import radion.ru.srcm.util.Interest;
 @Data
 @Builder
 public class StudentUpdateRequest {
-    @NotNull
+    @NotNull(message = "{messages.not.null}")
     private Long id;
-    @Size(min = 10)
+    @Size(min = 10, message = "{messages.min.size}")
     private String fullName;
+    @Size(max = 1000, message = "{messages.max.size}")
     private String city;
-    @NotNull
+    @NotNull(message = "{messages.not.null}")
     private Interest interest;
+    @Size(max = 1500, message = "{messages.max.size}")
     private String description;
 
-    @NotNull
+    @NotNull(message = "{messages.not.null}")
     private Long groupId;
 }
