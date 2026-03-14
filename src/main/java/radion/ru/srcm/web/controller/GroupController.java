@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import radion.ru.srcm.dto.response.GroupResponse;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.mapper.response.GroupMapperResponse;
 import radion.ru.srcm.service.GroupService;
 
@@ -15,6 +16,7 @@ public class GroupController {
     private final GroupMapperResponse mapperResponse;
 
     @GetMapping("/{id}")
+    @Loggable("Сетевой запрос")
     public GroupResponse getGroupById(@PathVariable Long id) {
         return mapperResponse.toResponse(
                 groupService.getGroupById(id)
@@ -22,6 +24,7 @@ public class GroupController {
     }
 
     @PatchMapping("/{id}/update")
+    @Loggable("Сетевой запрос")
     public ResponseEntity<String> updateGroup(@PathVariable Long id){
         return ResponseEntity.ok("Hehe :)");
     }

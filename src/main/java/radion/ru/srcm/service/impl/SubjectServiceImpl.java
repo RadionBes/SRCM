@@ -6,6 +6,7 @@ import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dto.response.SubjectResponse;
 import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.entity.Subject;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.mapper.entity.SubjectMapperEntity;
 import radion.ru.srcm.mapper.response.SubjectMapperResponse;
 import radion.ru.srcm.dao.SubjectJpaRepository;
@@ -25,6 +26,7 @@ public class SubjectServiceImpl implements SubjectService {
     private final GroupService groupService;
 
     @Override
+    @Loggable(value = "Синхронизация изучаемых дисциплин", logParams = false)
     public void syncAllGroup() {
         List<Group> groupsEntityList = groupService.getAll();
         Set<Subject> subjectList = new HashSet<>();

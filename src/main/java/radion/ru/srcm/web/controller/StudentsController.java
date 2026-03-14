@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.dto.request.StudentsCreateRequest;
 import radion.ru.srcm.dto.response.StudentResponse;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.mapper.response.GroupMapperResponse;
 import radion.ru.srcm.service.GroupService;
 import radion.ru.srcm.service.StudentService;
@@ -19,11 +20,13 @@ public class StudentsController {
     private final StudentService studentService;
 
     @PostMapping
+    @Loggable("Сетевой запрос")
     private ResponseEntity<List<StudentResponse>> createStudents(@RequestBody StudentsCreateRequest request) {
         return ResponseEntity.ok(studentService.createStudentsFromList(request));
     }
 
     @GetMapping
+    @Loggable("Сетевой запрос")
     private List<StudentResponse> getAllStudent() {
         return studentService.getAll();
     }

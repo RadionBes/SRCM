@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import radion.ru.srcm.dto.response.GroupResponse;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.mapper.response.GroupMapperResponse;
 import radion.ru.srcm.service.GroupService;
 
@@ -18,6 +19,7 @@ public class GroupsController {
     private final GroupService groupService;
 
     @GetMapping
+    @Loggable("Сетевой запрос")
     public List<GroupResponse> getAllGroups(){
         return groupService.getGroupList();
     }

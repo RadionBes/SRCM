@@ -1,6 +1,7 @@
 package radion.ru.srcm.apiCollage;
 
 import radion.ru.srcm.dto.api.*;
+import radion.ru.srcm.logging.Loggable;
 
 import java.util.List;
 

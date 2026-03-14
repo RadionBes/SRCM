@@ -13,6 +13,7 @@ import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.entity.Student;
 import radion.ru.srcm.exceptions.FileGetExtensionException;
 import radion.ru.srcm.exceptions.FileWriteException;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.service.FileService;
 import radion.ru.srcm.service.GroupService;
 import radion.ru.srcm.service.entity.StudentServiceOriginal;
@@ -35,8 +36,8 @@ public class FileServiceImpl implements FileService {
 
     @Override
     @Transactional
+    @Loggable("Загрузка файла для группы")
     public void uploadFileGroup(MultipartFile multipartFile, Long groupId) {
-        log.info("Начинаем загрузку файла для группы {}", groupId);
         Group group = groupService.getGroupById(groupId);
 
         try {
@@ -61,10 +62,11 @@ public class FileServiceImpl implements FileService {
 
 
     }
+
     @Override
     @Transactional
+    @Loggable("Загрузка файла для студента")
     public void uploadFileStudent(MultipartFile multipartFile, Long studentId) {
-        log.info("Начинаем загрузку файла для студента {}", studentId);
         Student student = studentServiceOriginal.getById(studentId);
 
         try {
@@ -77,13 +79,14 @@ public class FileServiceImpl implements FileService {
     }
     @Override
     public void copyFile(Long id) {}
+
+    @Loggable("Получение уникального имени файла")
     private String getUniqueName(MultipartFile multipartFile) throws RuntimeException {
         try {
             String originalFilename = multipartFile.getOriginalFilename();
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
             return UUID.randomUUID() + fileExtension;
         } catch (Exception e) {
-            log.error("Не получилось обработать полное имя файла \n {}", e.getMessage());
             throw new RuntimeException(
                     messageSource.getMessage(
                             "error.FieldGetFullFileName",
@@ -93,6 +96,8 @@ public class FileServiceImpl implements FileService {
             );
         }
     }
+
+    @Loggable("Запись файла")
     private String fileWriter(String path, String nameOfDirectory, String uniqueFileName, MultipartFile multipartFile) throws RuntimeException {
         try {
             Path groupDir = Paths.get(path, nameOfDirectory);
@@ -102,7 +107,6 @@ public class FileServiceImpl implements FileService {
             Files.write(filePath, multipartFile.getBytes());
             return filePath.toString();
         } catch (IOException exception){
-            log.error("Ошибка записи файла \n {}", exception.getMessage());
             throw new RuntimeException(
                     messageSource.getMessage(
                             "error.FileWriteException",
@@ -112,6 +116,8 @@ public class FileServiceImpl implements FileService {
             );
         }
     }
+
+    @Loggable("Получение расширения файла")
     private String getFileExtension(String filename) throws FileGetExtensionException{
         try {
             if (filename == null || filename.lastIndexOf(".") == -1) {
@@ -119,7 +125,6 @@ public class FileServiceImpl implements FileService {
             }
             return filename.substring(filename.lastIndexOf(".") + 1);
         } catch (RuntimeException e) {
-            log.error("Не удалось получить расширение файла \n {}", e.getMessage());
             throw new FileGetExtensionException(
                     messageSource.getMessage(
                             "error.FileGetExtensionException",

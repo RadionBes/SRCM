@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import radion.ru.srcm.entity.Pair;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.service.PairService;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class PairController {
     private final PairService pairService;
 
     @GetMapping
+    @Loggable("Сетевой запрос")
     public ResponseEntity<List<Pair>> getAllPair(){
         return ResponseEntity.ok(pairService.getAll());
     }

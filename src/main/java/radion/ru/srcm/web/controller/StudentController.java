@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import radion.ru.srcm.dto.request.StudentCreateRequest;
 import radion.ru.srcm.dto.request.StudentUpdateRequest;
 import radion.ru.srcm.dto.response.StudentResponse;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.service.StudentService;
 
 
@@ -18,6 +19,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping("/{id}")
+    @Loggable("Сетевой запрос")
     public ResponseEntity<StudentResponse> getStudentById(@PathVariable Long id){
         return ResponseEntity.ok(
                 studentService.getById(id)
@@ -25,6 +27,7 @@ public class StudentController {
     }
 
     @PostMapping("/create")
+    @Loggable("Сетевой запрос")
     public ResponseEntity<StudentResponse> createStudent(
             @RequestBody @Valid StudentCreateRequest studentCreateRequest
     ){
@@ -34,6 +37,7 @@ public class StudentController {
     }
 
     @PatchMapping("/update")
+    @Loggable("Сетевой запрос")
     public ResponseEntity<?> updateStudent(@RequestBody @Valid StudentUpdateRequest studentUpdateRequest){
         return ResponseEntity.ok(
                 studentService.update(

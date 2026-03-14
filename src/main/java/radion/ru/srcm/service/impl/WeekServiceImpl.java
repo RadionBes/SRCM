@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dao.WeekJpaRepository;
 import radion.ru.srcm.entity.Week;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.service.WeekService;
 
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ public class WeekServiceImpl implements WeekService {
     private final MapApiCollageService mapApiCollageService;
 
     @Override
+    @Loggable(value = "Синхронизация недель")
     public void sync() {
         var list = mapApiCollageService.getListWeeks();
         List<Week> weeks = list.stream()
@@ -34,6 +36,7 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
+    @Loggable(value = "Получение всех недель")
     public List<Week> getAll() {
         return weekJpaRepository.findAll();
     }

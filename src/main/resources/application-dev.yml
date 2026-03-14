@@ -6,11 +6,11 @@ spring:
     password: root
     url: jdbc:postgresql://localhost:5432/SRCM
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: create-drop
   messages:
-    basename: messages, errors, warnings
+    basename: message-center/messages, message-center/errors, message-center/warnings, message-center/logs
     fallback-to-system-locale: false
 
 server:
@@ -31,4 +31,9 @@ app:
   file-path:
     groups: C:\Users\Radion\Documents\Test\Groups
     students: C:\Users\Radion\Documents\Test\Students
+
+logging:
+  level:
+    radion.ru.srcm: debug
+    root: info
 

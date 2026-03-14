@@ -9,6 +9,7 @@ import radion.ru.srcm.dto.response.GroupResponse;
 import radion.ru.srcm.entity.Group;
 import radion.ru.srcm.exceptions.NotFoundByIdException;
 import radion.ru.srcm.exceptions.NotFoundByKeyException;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.mapper.entity.GroupMapperEntity;
 import radion.ru.srcm.mapper.response.GroupMapperResponse;
 import radion.ru.srcm.dao.GroupJpaRepository;
@@ -26,6 +27,7 @@ public class GroupServiceImpl implements GroupService {
     private final MessageSource messageSource;
 
     @Override
+    @Loggable(value = "Синхронизация групп", logParams = false)
     public void sync() {
         var groups = apiCollageService.getListGroup();
         groups.stream()
@@ -37,16 +39,20 @@ public class GroupServiceImpl implements GroupService {
                 );
     }
     @Override
+    @Loggable(value = "Получение списка групп", logParams = false)
     public List<GroupResponse> getGroupList() {
         return groupMapperResponse.toResponse(
                 repository.findAll()
         );
     }
+
     @Override
+    @Loggable(value = "Получение всех групп", logParams = false)
     public List<Group> getAll() {
         return repository.findAll();
     }
     @Override
+    @Loggable("Поиск группы по ID")
     public Group getGroupById(Long groupId) {
         return repository.findById(groupId).orElseThrow(() ->
                 new NotFoundByIdException(
@@ -59,6 +65,7 @@ public class GroupServiceImpl implements GroupService {
         );
     }
     @Override
+    @Loggable("Поиск группы по KEY")
     public Group getGroupByKey(String key) {
         return repository.findGroupByKey(key).orElseThrow(() ->
                 new NotFoundByKeyException(
@@ -71,10 +78,13 @@ public class GroupServiceImpl implements GroupService {
     }
     @Override
     @Transactional
+    @Loggable("Сохранение группы")
     public void save(Group group) {
         repository.save(group);
     }
     @Override
+    @Transactional
+    @Loggable(value = "Сохранение списка групп")
     public void saveAll(List<Group> groups) {
         repository.saveAll(groups);
     }

@@ -7,11 +7,11 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.service.*;
 
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class AppStartupRunner {
     private final WeekService weekService;
     private final GroupService groupService;
@@ -21,8 +21,8 @@ public class AppStartupRunner {
     private final SubjectService subjectService;
 
     @EventListener(ApplicationReadyEvent.class)
-    public void runAfterStartup(){
-        log.info("Запуск синхронизации после старта приложения");
+    @Loggable(value = "Синхронизация сервиса")
+    public void runAfterStartup() throws Exception {
         try {
             groupService.sync();
             pairService.sync();
@@ -30,9 +30,8 @@ public class AppStartupRunner {
             weekService.sync();
             teacherService.sync();
             subjectService.syncAllGroup();
-            log.info("Синхронизация успешно завершена");
         } catch (Exception e) {
-            log.error("Ошибка при синхронизации: {}", e.getMessage());
+            throw new Exception(e);
         }
     }
 }

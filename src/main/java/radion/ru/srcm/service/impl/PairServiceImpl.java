@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dao.PairJpaRepository;
 import radion.ru.srcm.entity.Pair;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.mapper.entity.PairMapperEntity;
 import radion.ru.srcm.service.PairService;
 
@@ -18,6 +19,7 @@ public class PairServiceImpl implements PairService {
     private final PairMapperEntity pairMapperEntity;
 
     @Override
+    @Loggable(value = "Синхронизация времени начала пар", logParams = false)
     public void sync() {
         pairJpaRepository.saveAll(
                 pairMapperEntity.toEntity(
@@ -27,6 +29,7 @@ public class PairServiceImpl implements PairService {
     }
 
     @Override
+    @Loggable(value = "Получение времени начала пар", logParams = false)
     public List<Pair> getAll() {
         return pairJpaRepository.findAll();
     }

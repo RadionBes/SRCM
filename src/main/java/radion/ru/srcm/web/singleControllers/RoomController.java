@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import radion.ru.srcm.entity.Room;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.service.RoomService;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class RoomController {
     private final RoomService roomService;
 
     @GetMapping
+    @Loggable("Сетевой запрос")
     public ResponseEntity<List<Room>> getAllRooms(){
         return ResponseEntity.ok(roomService.getAll());
     }

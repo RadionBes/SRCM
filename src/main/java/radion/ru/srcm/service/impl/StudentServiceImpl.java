@@ -10,6 +10,7 @@ import radion.ru.srcm.dto.response.StudentResponse;
 import radion.ru.srcm.entity.Student;
 import radion.ru.srcm.exceptions.ItemExistsException;
 import radion.ru.srcm.exceptions.NotFoundByIdException;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.mapper.entity.StudentMapperEntity;
 import radion.ru.srcm.mapper.response.StudentMapperResponse;
 import radion.ru.srcm.dao.StudentJpaRepository;
@@ -30,6 +31,7 @@ public class StudentServiceImpl implements StudentService {
     private final MessageSource messageSource;
 
     @Override
+    @Loggable("Создание нового студента")
     public StudentResponse create(StudentCreateRequest studentsCreateRequest) throws ItemExistsException{
         var group = groupService.getGroupById(studentsCreateRequest.getIdGroup());
         var entity = studentMapperEntity.toEntity(studentsCreateRequest);
@@ -49,6 +51,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Loggable(value = "Создание новых студентов пачкой")
     public List<StudentResponse> createStudentsFromList(StudentsCreateRequest students) {
         var group = groupService.getGroupById(students.getGroupId());
         var entities = studentMapperEntity.toEntity(students.getStudents());
@@ -61,6 +64,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Loggable(value = "Получение всех студентов", logParams = false)
     public List<StudentResponse> getAll() {
         return studentMapperResponse.toResponse(
                 repository.findAll()
@@ -68,6 +72,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Loggable(value = "Изменение студента")
     public StudentResponse update(StudentUpdateRequest studentUpdateRequest) {
         Student student = repository.findById(studentUpdateRequest.getId()).orElseThrow();
 
@@ -87,6 +92,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Loggable(value = "Получение студента по ID")
     public StudentResponse getById(Long id) throws NotFoundByIdException {
         return studentMapperResponse.toResponse(
                 repository.findById(id).orElseThrow(() ->

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import radion.ru.srcm.apiCollage.MapApiCollageService;
 import radion.ru.srcm.dao.RoomJpaRepository;
 import radion.ru.srcm.entity.Room;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.mapper.entity.RoomMapperEntity;
 import radion.ru.srcm.service.RoomService;
 
@@ -18,6 +19,7 @@ public class RoomServiceImpl implements RoomService {
     private final RoomMapperEntity roomMapperEntity;
 
     @Override
+    @Loggable(value = "Синхронизация аудиторий", logParams = false)
     public void sync() {
         roomJpaRepository.saveAll(
                 roomMapperEntity.toEntity(
@@ -27,6 +29,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    @Loggable(value = "Получение всех аудиторий", logParams = false)
     public List<Room> getAll() {
         return roomJpaRepository.findAll();
     }

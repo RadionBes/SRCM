@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import radion.ru.srcm.dao.StudentJpaRepository;
 import radion.ru.srcm.entity.Student;
 import radion.ru.srcm.exceptions.NotFoundByIdException;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.service.entity.StudentServiceOriginal;
 
 @Service
@@ -15,6 +16,7 @@ public class StudentServiceOriginalImpl implements StudentServiceOriginal {
     private final MessageSource messageSource;
 
     @Override
+    @Loggable
     public Student getById(Long id) {
         return studentJpaRepository.findById(id).orElseThrow(() ->
                 new NotFoundByIdException(

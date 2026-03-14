@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import radion.ru.srcm.logging.Loggable;
 import radion.ru.srcm.service.FileService;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/group")
+    @Loggable("Сетевой запрос")
     public void saveFileGroup(
             @RequestParam("groupId") Long groupId,
             MultipartFile multipartFile
@@ -25,6 +27,7 @@ public class FileController {
     }
 
     @PostMapping("/student")
+    @Loggable("Сетевой запрос")
     public void saveFileStudent(
             @RequestParam("studentId") Long studentId,
             MultipartFile multipartFile
