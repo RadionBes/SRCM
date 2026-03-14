@@ -26,7 +26,7 @@ public class SubjectServiceImpl implements SubjectService {
     private final GroupService groupService;
 
     @Override
-    @Loggable(value = "Синхронизация изучаемых дисциплин", logParams = false)
+    @Loggable(value = "Синхронизация изучаемых дисциплин", logParams = false, logResult = false)
     public void syncAllGroup() {
         List<Group> groupsEntityList = groupService.getAll();
         Set<Subject> subjectList = new HashSet<>();

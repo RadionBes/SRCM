@@ -31,7 +31,7 @@ public class StudentServiceImpl implements StudentService {
     private final MessageSource messageSource;
 
     @Override
-    @Loggable("Создание нового студента")
+    @Loggable(value = "Создание нового студента", logResult = false)
     public StudentResponse create(StudentCreateRequest studentsCreateRequest) throws ItemExistsException{
         var group = groupService.getGroupById(studentsCreateRequest.getIdGroup());
         var entity = studentMapperEntity.toEntity(studentsCreateRequest);
@@ -72,7 +72,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Loggable(value = "Изменение студента")
+    @Loggable(value = "Изменение студента", logResult = false)
     public StudentResponse update(StudentUpdateRequest studentUpdateRequest) {
         Student student = repository.findById(studentUpdateRequest.getId()).orElseThrow();
 
@@ -92,7 +92,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Loggable(value = "Получение студента по ID")
+    @Loggable(value = "Получение студента по ID", logResult = false)
     public StudentResponse getById(Long id) throws NotFoundByIdException {
         return studentMapperResponse.toResponse(
                 repository.findById(id).orElseThrow(() ->

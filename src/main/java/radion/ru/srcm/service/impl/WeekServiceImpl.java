@@ -24,7 +24,7 @@ public class WeekServiceImpl implements WeekService {
     private final MapApiCollageService mapApiCollageService;
 
     @Override
-    @Loggable(value = "Синхронизация недель")
+    @Loggable(value = "Синхронизация недель", logResult = false, logParams = false)
     public void sync() {
         var list = mapApiCollageService.getListWeeks();
         List<Week> weeks = list.stream()
@@ -36,7 +36,7 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    @Loggable(value = "Получение всех недель")
+    @Loggable(value = "Получение всех недель", logParams = false)
     public List<Week> getAll() {
         return weekJpaRepository.findAll();
     }

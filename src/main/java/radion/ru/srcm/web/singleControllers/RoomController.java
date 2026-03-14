@@ -18,7 +18,7 @@ public class RoomController {
     private final RoomService roomService;
 
     @GetMapping
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false, logParams = false)
     public ResponseEntity<List<Room>> getAllRooms(){
         return ResponseEntity.ok(roomService.getAll());
     }

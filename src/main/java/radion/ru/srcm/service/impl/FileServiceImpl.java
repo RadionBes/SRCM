@@ -36,7 +36,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     @Transactional
-    @Loggable("Загрузка файла для группы")
+    @Loggable(value = "Загрузка файла для группы", logResult = false)
     public void uploadFileGroup(MultipartFile multipartFile, Long groupId) {
         Group group = groupService.getGroupById(groupId);
 
@@ -65,7 +65,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     @Transactional
-    @Loggable("Загрузка файла для студента")
+    @Loggable(value = "Загрузка файла для студента", logResult = false)
     public void uploadFileStudent(MultipartFile multipartFile, Long studentId) {
         Student student = studentServiceOriginal.getById(studentId);
 
@@ -80,7 +80,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public void copyFile(Long id) {}
 
-    @Loggable("Получение уникального имени файла")
+    @Loggable(value = "Получение уникального имени файла", logResult = false)
     private String getUniqueName(MultipartFile multipartFile) throws RuntimeException {
         try {
             String originalFilename = multipartFile.getOriginalFilename();
@@ -97,7 +97,7 @@ public class FileServiceImpl implements FileService {
         }
     }
 
-    @Loggable("Запись файла")
+    @Loggable(value = "Запись файла", logResult = false)
     private String fileWriter(String path, String nameOfDirectory, String uniqueFileName, MultipartFile multipartFile) throws RuntimeException {
         try {
             Path groupDir = Paths.get(path, nameOfDirectory);
@@ -117,7 +117,7 @@ public class FileServiceImpl implements FileService {
         }
     }
 
-    @Loggable("Получение расширения файла")
+    @Loggable(value = "Получение расширения файла", logResult = false)
     private String getFileExtension(String filename) throws FileGetExtensionException{
         try {
             if (filename == null || filename.lastIndexOf(".") == -1) {

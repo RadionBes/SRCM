@@ -18,7 +18,7 @@ public class WeekController {
     private final WeekService weekService;
 
     @GetMapping
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logParams = false)
     public ResponseEntity<List<Week>> getAllWeeks(){
         return ResponseEntity.ok(weekService.getAll());
     }

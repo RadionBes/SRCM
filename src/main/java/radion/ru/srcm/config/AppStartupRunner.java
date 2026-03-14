@@ -21,7 +21,7 @@ public class AppStartupRunner {
     private final SubjectService subjectService;
 
     @EventListener(ApplicationReadyEvent.class)
-    @Loggable(value = "Синхронизация сервиса")
+    @Loggable(value = "Синхронизация сервиса", logParams = false, logResult = false)
     public void runAfterStartup() throws Exception {
         try {
             groupService.sync();

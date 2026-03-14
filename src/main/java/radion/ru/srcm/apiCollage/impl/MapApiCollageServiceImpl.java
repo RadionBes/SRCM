@@ -22,7 +22,7 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     private final ObjectMapper objectMapper;
 
     @Override
-    @Loggable("Получение групп из колледжа")
+    @Loggable(value = "Получение групп из колледжа", logParams = false)
     public List<GroupApiDto> getListGroup() {
         var request = new Request.Builder()
                 .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getGroups())
@@ -36,7 +36,7 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     }
 
     @Override
-    @Loggable(value = "Получение изучаемых дисциплин для группы из колледжа", logResult = false)
+    @Loggable(value = "Получение изучаемых дисциплин для группы из колледжа")
     public List<SubjectApiDto> getListSubjectForGroup(String key) {
         var request = new Request.Builder()
                 .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getSubjects() + "?group=" + Long.parseLong(key))
@@ -50,7 +50,7 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     }
 
     @Override
-    @Loggable("Получение недель из колледжа")
+    @Loggable(value = "Получение недель из колледжа", logParams = false)
     public List<String> getListWeeks() {
         var request = new Request.Builder()
                 .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getWeeks())
@@ -64,7 +64,7 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     }
 
     @Override
-    @Loggable("Получение границ расписания из колледжа")
+    @Loggable(value = "Получение границ расписания из колледжа", logParams = false)
     public List<PairApiDto> getListPairs() {
         var request = new Request.Builder()
                 .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getPairs())
@@ -78,7 +78,7 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     }
 
     @Override
-    @Loggable("Получение аудиторий из колледжа")
+    @Loggable(value = "Получение аудиторий из колледжа", logParams = false)
     public List<RoomApiDto> getListRooms() {
         var request = new Request.Builder()
                 .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getRooms())
@@ -92,7 +92,7 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     }
 
     @Override
-    @Loggable("Получение преподавателей из колледжа")
+    @Loggable(value = "Получение преподавателей из колледжа", logParams = false)
     public List<TeacherApiDto> getListTeachers() {
         var request = new Request.Builder()
                 .url(apiAppVar.getBaseUrl() + apiAppVar.getEndpoints().getTeachers())

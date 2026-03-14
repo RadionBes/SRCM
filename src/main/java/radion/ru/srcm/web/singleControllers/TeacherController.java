@@ -18,7 +18,7 @@ public class TeacherController {
     private final TeacherService teacherService;
 
     @GetMapping
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false, logParams = false)
     public ResponseEntity<List<Teacher>> getAllTeachers(){
         return ResponseEntity.ok(teacherService.getAll());
     }

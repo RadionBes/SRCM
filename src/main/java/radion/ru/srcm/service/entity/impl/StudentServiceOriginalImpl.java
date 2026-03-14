@@ -16,7 +16,7 @@ public class StudentServiceOriginalImpl implements StudentServiceOriginal {
     private final MessageSource messageSource;
 
     @Override
-    @Loggable
+    @Loggable(value = "Получение студента", logResult = false)
     public Student getById(Long id) {
         return studentJpaRepository.findById(id).orElseThrow(() ->
                 new NotFoundByIdException(

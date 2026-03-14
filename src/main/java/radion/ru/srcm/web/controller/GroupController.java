@@ -16,7 +16,7 @@ public class GroupController {
     private final GroupMapperResponse mapperResponse;
 
     @GetMapping("/{id}")
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false)
     public GroupResponse getGroupById(@PathVariable Long id) {
         return mapperResponse.toResponse(
                 groupService.getGroupById(id)
@@ -24,7 +24,7 @@ public class GroupController {
     }
 
     @PatchMapping("/{id}/update")
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false)
     public ResponseEntity<String> updateGroup(@PathVariable Long id){
         return ResponseEntity.ok("Hehe :)");
     }

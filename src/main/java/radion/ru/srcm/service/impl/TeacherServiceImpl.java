@@ -19,7 +19,7 @@ public class TeacherServiceImpl implements TeacherService {
     private final TeacherJpaRepository teacherJpaRepository;
 
     @Override
-    @Loggable(value = "Синхронизация преподавателей", logParams = false)
+    @Loggable(value = "Синхронизация преподавателей", logParams = false, logResult = false)
     public void sync() {
         teacherJpaRepository.saveAll(
                 teacherMapperEntity.toEntity(

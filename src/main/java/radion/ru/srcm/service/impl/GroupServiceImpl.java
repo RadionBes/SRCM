@@ -27,7 +27,7 @@ public class GroupServiceImpl implements GroupService {
     private final MessageSource messageSource;
 
     @Override
-    @Loggable(value = "Синхронизация групп", logParams = false)
+    @Loggable(value = "Синхронизация групп", logParams = false, logResult = false)
     public void sync() {
         var groups = apiCollageService.getListGroup();
         groups.stream()
@@ -52,7 +52,7 @@ public class GroupServiceImpl implements GroupService {
         return repository.findAll();
     }
     @Override
-    @Loggable("Поиск группы по ID")
+    @Loggable(value = "Поиск группы по ID", logResult = false)
     public Group getGroupById(Long groupId) {
         return repository.findById(groupId).orElseThrow(() ->
                 new NotFoundByIdException(
@@ -65,7 +65,7 @@ public class GroupServiceImpl implements GroupService {
         );
     }
     @Override
-    @Loggable("Поиск группы по KEY")
+    @Loggable(value = "Поиск группы по KEY", logResult = false)
     public Group getGroupByKey(String key) {
         return repository.findGroupByKey(key).orElseThrow(() ->
                 new NotFoundByKeyException(
@@ -78,13 +78,13 @@ public class GroupServiceImpl implements GroupService {
     }
     @Override
     @Transactional
-    @Loggable("Сохранение группы")
+    @Loggable(value = "Сохранение группы", logResult = false)
     public void save(Group group) {
         repository.save(group);
     }
     @Override
     @Transactional
-    @Loggable(value = "Сохранение списка групп")
+    @Loggable(value = "Сохранение списка групп", logResult = false)
     public void saveAll(List<Group> groups) {
         repository.saveAll(groups);
     }

@@ -19,7 +19,7 @@ public class GroupsController {
     private final GroupService groupService;
 
     @GetMapping
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false, logParams = false)
     public List<GroupResponse> getAllGroups(){
         return groupService.getGroupList();
     }

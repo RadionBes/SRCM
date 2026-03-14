@@ -18,7 +18,7 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/group")
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false)
     public void saveFileGroup(
             @RequestParam("groupId") Long groupId,
             MultipartFile multipartFile
@@ -27,7 +27,7 @@ public class FileController {
     }
 
     @PostMapping("/student")
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false)
     public void saveFileStudent(
             @RequestParam("studentId") Long studentId,
             MultipartFile multipartFile

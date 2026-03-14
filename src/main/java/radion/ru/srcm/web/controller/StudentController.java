@@ -19,7 +19,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping("/{id}")
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false)
     public ResponseEntity<StudentResponse> getStudentById(@PathVariable Long id){
         return ResponseEntity.ok(
                 studentService.getById(id)
@@ -27,7 +27,7 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false)
     public ResponseEntity<StudentResponse> createStudent(
             @RequestBody @Valid StudentCreateRequest studentCreateRequest
     ){
@@ -37,7 +37,7 @@ public class StudentController {
     }
 
     @PatchMapping("/update")
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false)
     public ResponseEntity<?> updateStudent(@RequestBody @Valid StudentUpdateRequest studentUpdateRequest){
         return ResponseEntity.ok(
                 studentService.update(

@@ -18,7 +18,7 @@ public class PairController {
     private final PairService pairService;
 
     @GetMapping
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false, logParams = false)
     public ResponseEntity<List<Pair>> getAllPair(){
         return ResponseEntity.ok(pairService.getAll());
     }

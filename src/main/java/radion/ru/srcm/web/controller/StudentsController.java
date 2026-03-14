@@ -20,13 +20,13 @@ public class StudentsController {
     private final StudentService studentService;
 
     @PostMapping
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false)
     private ResponseEntity<List<StudentResponse>> createStudents(@RequestBody StudentsCreateRequest request) {
         return ResponseEntity.ok(studentService.createStudentsFromList(request));
     }
 
     @GetMapping
-    @Loggable("Сетевой запрос")
+    @Loggable(value = "Сетевой запрос", logResult = false, logParams = false)
     private List<StudentResponse> getAllStudent() {
         return studentService.getAll();
     }
