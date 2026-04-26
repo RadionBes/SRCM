@@ -42,6 +42,7 @@ public class FileServiceImpl implements FileService {
 
         try {
             String originalFilename = multipartFile.getOriginalFilename();
+
             String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
             String uniqueFileName = UUID.randomUUID() + fileExtension;
             String savePath = fileWriter(pathAppVar.getGroups(), group.getId().toString(), uniqueFileName, multipartFile);
@@ -59,8 +60,6 @@ public class FileServiceImpl implements FileService {
         } catch (Exception e) {
             throw new FileWriteException(e.getMessage());
         }
-
-
     }
 
     @Override

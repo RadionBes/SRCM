@@ -2,48 +2,39 @@
   "properties": [
     {
       "name": "app.collage.base-url",
-      "type": "java.lang.String",
-      "description": "Description for app.collage.base-url."
+      "type": "java.lang.String"
     },
     {
       "name": "app.collage.endpoints.groups",
-      "type": "java.lang.String",
-      "description": "Description for app.collage.endpoints.groups."
+      "type": "java.lang.String"
     },
     {
       "name": "app.collage.endpoints.weeks",
-      "type": "java.lang.String",
-      "description": "Description for app.collage.endpoints.weeks."
+      "type": "java.lang.String"
     },
     {
       "name": "app.collage.endpoints.teachers",
-      "type": "java.lang.String",
-      "description": "Description for app.collage.endpoints.teachers."
+      "type": "java.lang.String"
     },
     {
       "name": "app.collage.endpoints.subjects",
-      "type": "java.lang.String",
-      "description": "Description for app.collage.endpoints.subjects."
+      "type": "java.lang.String"
     },
     {
       "name": "app.file-path",
-      "type": "java.lang.String",
-      "description": "Description for app.file-path."
+      "type": "java.lang.String"
     },
     {
       "name": "app.collage.endpoints.timetable",
-      "type": "java.lang.String",
-      "description": "Description for app.collage.endpoints.timetable."
+      "type": "java.lang.String"
     },
     {
       "name": "app.collage.endpoints.rooms",
-      "type": "java.lang.String",
-      "description": "Description for app.collage.endpoints.rooms."
+      "type": "java.lang.String"
     },
     {
       "name": "app.collage.endpoints.pairs",
-      "type": "java.lang.String",
-      "description": "Description for app.collage.endpoints.pairs."
+      "type": "java.lang.String"
     }
   ]
 }

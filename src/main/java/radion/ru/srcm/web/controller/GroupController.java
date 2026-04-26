@@ -26,6 +26,7 @@ public class GroupController {
     @PatchMapping("/{id}/update")
     @Loggable(value = "Сетевой запрос", logResult = false)
     public ResponseEntity<String> updateGroup(@PathVariable Long id){
+
         return ResponseEntity.ok("Hehe :)");
     }
 }

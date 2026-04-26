@@ -36,4 +36,3 @@ logging:
   level:
     radion.ru.srcm: debug
     root: info
-

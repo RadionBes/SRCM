@@ -106,7 +106,7 @@ public class MapApiCollageServiceImpl implements MapApiCollageService {
     }
 
     @Override
-    public List<TimetableTeacherApiDto> getListTimetableTeacher() {
+    public List<TimetableTeacherApiDto> getListTimetableTeacher(String teacherKey, String week) {
         return List.of();
     }
 }
